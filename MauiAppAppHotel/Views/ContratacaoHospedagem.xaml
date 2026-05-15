@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="MauiAppAppHotel.Views.ContratacaoHospedagem"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Hotel">
+
+    <ScrollView>
+
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
+
+            <Label
+                Text="Hotel"
+                FontSize="30"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"/>
+
+            <Entry
+                x:Name="edtHospedes"
+                Placeholder="Quantidade de hóspedes"
+                Keyboard="Numeric"/>
+
+            <Entry
+                x:Name="edtDias"
+                Placeholder="Quantidade de dias"
+                Keyboard="Numeric"/>
+
+            <Picker
+                x:Name="pckSuite"
+                Title="Escolha a suíte">
+
+                <Picker.Items>
+                    <x:String>Premium</x:String>
+                    <x:String>Luxo</x:String>
+                    <x:String>Master</x:String>
+                </Picker.Items>
+
+            </Picker>
+
+            <Button
+                Text="Calcular"
+                Clicked="Button_Clicked"/>
+
+            <Label
+                x:Name="lblResultado"
+                FontSize="20"
+                TextColor="Green"/>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
