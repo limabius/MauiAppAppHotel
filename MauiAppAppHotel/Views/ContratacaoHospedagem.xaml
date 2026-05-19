@@ -1,44 +1,56 @@
- namespace MauiAppHotel.Views;
+<?xml version="1.0" encoding="utf-8" ?>
 
-public partial class ContratacaoHospedagem : ContentPage
-{
-    App PropriedadesApp;
+<ContentPage
+    x:Class="MauiAppAppHotel.Views.ContratacaoHospedagem"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Hotel">
 
-    public ContratacaoHospedagem()
-	{
-		InitializeComponent();
+    <ScrollView>
 
-        PropriedadesApp = (App)Application.Current;
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="15">
 
-        pck_quarto.ItemsSource = PropriedadesApp.lista_quartos;
+            <Label
+                Text="Hotel"
+                FontSize="30"
+                FontAttributes="Bold"
+                HorizontalOptions="Center"/>
 
-        dtpck_checkin.MinimumDate = DateTime.Now;
-        dtpck_checkin.MaximumDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month + 1, DateTime.Now.Day);
+            <Entry
+                x:Name="edtHospedes"
+                Placeholder="Quantidade de hóspedes"
+                Keyboard="Numeric"/>
 
-        dtpck_checkout.MinimumDate = dtpck_checkin.Date.AddDays(1);
-        dtpck_checkout.MaximumDate = dtpck_checkin.Date.AddMonths(6);
-    }
+            <Entry
+                x:Name="edtDias"
+                Placeholder="Quantidade de dias"
+                Keyboard="Numeric"/>
 
-    private void Button_Clicked(object sender, EventArgs e)
-    {
-        try
-        {
-            Navigation.PushAsync(new HospedagemContratada());
+            <Picker
+                x:Name="pckSuite"
+                Title="Escolha a suíte">
 
-        }
-        catch (Exception ex)
-        {
-            DisplayAlert("Ops", ex.Message, "OK");
-        }
-    }
+                <Picker.Items>
+                    <x:String>Premium</x:String>
+                    <x:String>Luxo</x:String>
+                    <x:String>Master</x:String>
+                </Picker.Items>
 
-    private void dtpck_checkin_DateSelected(object sender, DateChangedEventArgs e)
-    {
-        DatePicker elemento = sender as DatePicker;
+            </Picker>
 
-        DateTime data_selecionada_checkin = elemento.Date;
+            <Button
+                Text="Calcular"
+                Clicked="Button_Clicked"/>
 
-        dtpck_checkout.MinimumDate = data_selecionada_checkin.AddDays(1);
-        dtpck_checkout.MaximumDate = data_selecionada_checkin.AddMonths(6);
-    }
-}
+            <Label
+                x:Name="lblResultado"
+                FontSize="20"
+                TextColor="Green"/>
+
+        </VerticalStackLayout>
+
+    </ScrollView>
+
+</ContentPage>
