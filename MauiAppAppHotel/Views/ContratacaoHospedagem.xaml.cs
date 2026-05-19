@@ -1,3 +1,6 @@
+using System;
+using Microsoft.Maui.Controls;
+
 namespace MauiAppAppHotel.Views;
 
 public partial class ContratacaoHospedagem : ContentPage
@@ -7,33 +10,73 @@ public partial class ContratacaoHospedagem : ContentPage
         InitializeComponent();
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
-        int hospedes = Convert.ToInt32(edtHospedes.Text);
-        int dias = Convert.ToInt32(edtDias.Text);
-
-        double valor = 0;
-
-        switch (pckSuite.SelectedItem.ToString())
+        try
         {
-            case "Premium":
-                valor = 200;
-                break;
+            // 1. Verificação de segurança: impede erro se os campos estiverem vazios ou sem suíte selecionada
+            if (pckSuite.SelectedItem == null ||
+                string.IsNullOrEmpty(edtHospedes.Text) ||
+                string.IsNullOrEmpty(edtDias.Text))
+            {
+                await DisplayAlert("Atenção", "Por favor, preencha todos os campos e selecione uma suíte.", "OK");
+                return;
+            }
 
-            case "Luxo":
-                valor = 350;
-                break;
+            // 2. Coleta e validação dos dados dos campos de texto
+            if (!int.TryParse(edtHospedes.Text, out int hospedes))
+            {
+                await DisplayAlert("Erro de Entrada", "Por favor, insira um número válido para a quantidade de hóspedes.", "OK");
+                return;
+            }
 
-            case "Master":
-                valor = 500;
-                break;
+            if (!int.TryParse(edtDias.Text, out int dias))
+            {
+                await DisplayAlert("Erro de Entrada", "Por favor, insira um número válido para a quantidade de dias.", "OK");
+                return;
+            }
+
+            double valor = 0;
+
+            // 3. Definição do valor da diária com base na suíte escolhida
+            switch (pckSuite.SelectedItem.ToString())
+            {
+                case "Premium":
+                    valor = 200.0;
+                    break;
+
+                case "Luxo":
+                    valor = 350.0;
+                    break;
+
+                case "Master":
+                    valor = 500.0;
+                    break;
+
+                default:
+                    valor = 0;
+                    break;
+            }
+
+            // 4. Cálculo do total
+            double total = valor * dias;
+
+            // 5. Exibição do resultado formatado e navegação para a página de confirmação
+            string resumoReserva = $"Resumo da Reserva:\n" +
+                                  $"-------------------\n" +
+                                  $"Hóspedes: {hospedes}\n" +
+                                  $"Estadia: {dias} dias\n" +
+                                  $"Total: {total:C2}";
+
+            // Navegar para a página HospedagemContratada e passar os dados
+            await Shell.Current.GoToAsync("HospedagemContratada?resumo=" + Uri.EscapeDataString(resumoReserva));
+
+
+
         }
-
-        double total = valor * dias;
-
-        lblResultado.Text =
-            $"Hospedes: {hospedes}\n" +
-            $"Dias: {dias}\n" +
-            $"Total: R$ {total}";
+        catch (Exception ex)
+        {
+            await DisplayAlert("Erro", "Ocorreu um erro ao calcular: " + ex.Message, "OK");
+        }
     }
 }

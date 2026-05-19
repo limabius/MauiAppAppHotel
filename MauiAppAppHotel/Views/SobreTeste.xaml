@@ -1,16 +1,47 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppAppHotel.Views.SobreTeste  "
+             Title="Sobre o App">
 
-<ContentPage
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="MauiAppAppHotel.Views.SobreTeste">
+    <ScrollView>
+        <VerticalStackLayout Padding="30" Spacing="20" VerticalOptions="Center">
 
-    <VerticalStackLayout Padding="20">
+            <!-- Ícone ou Logo (opcional, se tiver uma imagem na pasta Resources/Images ) -->
+            <!-- <Image Source="dotnet_bot.png" HeightRequest="150" HorizontalOptions="Center" /> -->
 
-        <Label
-            Text="Sobre"
-            FontSize="30"/>
+            <Label Text="App Hotel" 
+                   FontSize="36" 
+                   FontFamily="KalamBold" 
+                   HorizontalOptions="Center" 
+                   TextColor="{StaticResource Primary}" />
 
-    </VerticalStackLayout>
+            <Label Text="O seu aplicativo ideal para gerenciar hospedagens com facilidade e rapidez." 
+                   FontSize="16" 
+                   FontFamily="OpenSansRegular" 
+                   HorizontalTextAlignment="Center" 
+                   TextColor="Gray" />
 
+            <BoxView HeightRequest="1" Color="LightGray" Margin="0,10" />
+
+            <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto" RowSpacing="10" ColumnSpacing="15" HorizontalOptions="Center">
+                <Label Grid.Row="0" Grid.Column="0" Text="Desenvolvedor:" FontFamily="OpenSansSemibold" FontSize="16" />
+                <Label Grid.Row="0" Grid.Column="1" Text="[Seu Nome Aqui]" FontFamily="OpenSansRegular" FontSize="16" />
+
+                <Label Grid.Row="1" Grid.Column="0" Text="Ano:" FontFamily="OpenSansSemibold" FontSize="16" />
+                <Label Grid.Row="1" Grid.Column="1" Text="2026" FontFamily="OpenSansRegular" FontSize="16" />
+            </Grid>
+
+            <BoxView HeightRequest="1" Color="LightGray" Margin="0,10" />
+
+            <Label Text="Versão 1.0.0" 
+                   FontSize="14" 
+                   FontFamily="OpenSansRegular" 
+                   HorizontalOptions="Center" 
+                   TextColor="Silver" />
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
+
+    

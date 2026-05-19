@@ -1,3 +1,5 @@
+using Microsoft.Maui.Controls;
+
 namespace MauiAppAppHotel.Views;
 
 public partial class SobreTeste : ContentPage

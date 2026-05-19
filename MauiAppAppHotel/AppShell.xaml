@@ -1,21 +1,26 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-
 <Shell
     x:Class="MauiAppAppHotel.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:views="clr-namespace:MauiAppAppHotel.Views">
+    xmlns:views="clr-namespace:MauiAppAppHotel.Views"
+    Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
+        <Tab Title="Reserva" Icon="dotnet_bot.png">
+            <!-- Definindo a rota explicitamente aqui -->
+            <ShellContent 
+                Title="Nova Reserva"
+                ContentTemplate="{DataTemplate views:ContratacaoHospedagem}" 
+                Route="ContratacaoHospedagem" />
+        </Tab>
 
-        <ShellContent
-            Title="Hotel"
-            ContentTemplate="{DataTemplate views:ContratacaoHospedagem}" />
-
-        <ShellContent
-            Title="Sobre"
-            ContentTemplate="{DataTemplate views:SobreTeste}" />
-
+        <Tab Title="Sobre" Icon="dotnet_bot.png">
+            <ShellContent 
+                Title="Sobre o App"
+                ContentTemplate="{DataTemplate views:SobreTeste}" 
+                Route="SobreTeste" />
+        </Tab>
     </TabBar>
 
 </Shell>

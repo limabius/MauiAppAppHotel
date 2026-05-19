@@ -1,4 +1,6 @@
-﻿namespace MauiAppAppHotel
+﻿using Microsoft.Maui.Controls;
+
+namespace MauiAppAppHotel
 {
     public partial class MainPage : ContentPage
     {
@@ -13,12 +15,16 @@
         {
             count++;
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
+            // Garante que o CounterBtn seja tratado como um Button para acessar a propriedade Text
+            if (CounterBtn != null)
+            {
+                if (count == 1)
+                    CounterBtn.Text = $"Clicked {count} time";
+                else
+                    CounterBtn.Text = $"Clicked {count} times";
 
-            SemanticScreenReader.Announce(CounterBtn.Text);
+                SemanticScreenReader.Announce(CounterBtn.Text);
+            }
         }
     }
 }
