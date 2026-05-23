@@ -26,7 +26,7 @@
 
             <Grid ColumnDefinitions="Auto, *" RowDefinitions="Auto, Auto" RowSpacing="10" ColumnSpacing="15" HorizontalOptions="Center">
                 <Label Grid.Row="0" Grid.Column="0" Text="Desenvolvedor:" FontFamily="OpenSansSemibold" FontSize="16" />
-                <Label Grid.Row="0" Grid.Column="1" Text="[Seu Nome Aqui]" FontFamily="OpenSansRegular" FontSize="16" />
+                <Label Grid.Row="0" Grid.Column="1" Text="[FÁBIO LIMA]" FontFamily="OpenSansRegular" FontSize="16" />
 
                 <Label Grid.Row="1" Grid.Column="0" Text="Ano:" FontFamily="OpenSansSemibold" FontSize="16" />
                 <Label Grid.Row="1" Grid.Column="1" Text="2026" FontFamily="OpenSansRegular" FontSize="16" />
